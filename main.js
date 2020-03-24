@@ -90,6 +90,17 @@ function startWebsocket()
             makeTextElement(obj.usr.name, obj.data, obj.usr.color, (obj.usr.id==usrObj.id));
         }
     };
+
+
+    
+    var input = document.getElementById("messageInput");
+
+    input.addEventListener("keydown", function(event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        sendClicked();
+    }
+    });
 }
 
 function makeTextElement(usr, txt, color, mine) 
