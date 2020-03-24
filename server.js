@@ -39,6 +39,12 @@ http.createServer(function (req, res) {
         let file = fs.createReadStream('main.js');
         file.pipe(res);
     }
+    else {
+        res.writeHead(200, {'Content-Type': 'text/html'});
+        console.log("here");
+        let file = fs.createReadStream('index.html');
+        file.pipe(res);
+    }
 
     // res.end();
 }).listen(port);
