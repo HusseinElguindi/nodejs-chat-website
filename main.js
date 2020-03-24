@@ -38,8 +38,11 @@ function sendClicked()
     }
 
     messageInput.value = "";
-    messageInput.focus();   
+    // messageInput.focus();
+    // messageInput.blur();
 }
+
+
 
 // window.onload = setup();
 
