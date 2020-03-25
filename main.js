@@ -38,11 +38,15 @@ function sendClicked()
     }
 
     messageInput.value = "";
-    // messageInput.focus();
+    messageInput.focus();
     // messageInput.blur();
 }
 
-
+// var messageInput = document.getElementById("messageInput");
+// for (let i = 0; i < 30; i++) {
+//     messageInput.value = "anything";
+//     sendClicked();
+// }
 
 // window.onload = setup();
 
@@ -68,6 +72,10 @@ function setDisplayName()
     }
 }
 
+function sendPing() {
+    ws.send("ping");
+}
+
 function startWebsocket()
 {
     // console.log("hello");
@@ -86,7 +94,7 @@ function startWebsocket()
     };
 
     ws.onmessage = function (event) {
-        console.log(event.data);
+        // console.log(event.data);
         let obj = JSON.parse(event.data);
 
         if (obj.type == "message") {
@@ -95,14 +103,16 @@ function startWebsocket()
     };
 
 
+    setInterval(function() { sendPing(); }, (45 * 1000));
+
     
     var input = document.getElementById("messageInput");
 
     input.addEventListener("keydown", function(event) {
-    if (event.keyCode === 13) {
-        event.preventDefault();
-        sendClicked();
-    }
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            sendClicked();
+        }
     });
 }
 
